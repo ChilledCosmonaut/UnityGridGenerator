@@ -23,7 +23,7 @@ namespace TilePathfinding
             
             if (GUILayout.Button("Create Grid"))
             {
-                grid.GenerateGrid(new Vector3(30, 30, 7));
+                grid.GenerateGrid();
                 Debug.Log(grid.Tiles.Count);
             }
         }

@@ -345,3 +345,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf4fb2a1c4c7fa8499957deb50378ed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridBlueprint:
+  - {fileID: 4900000, guid: 4d75e69c07b63204ead84729041080fe, type: 3}

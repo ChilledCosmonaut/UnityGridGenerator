@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
-using Vector3 = System.Numerics.Vector3;
 
 namespace TilePathfinding
 {
