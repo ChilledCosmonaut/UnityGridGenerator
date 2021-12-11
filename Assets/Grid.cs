@@ -8,6 +8,8 @@ public class Grid : MonoBehaviour
     public readonly Dictionary<Vector3, Tile> Tiles = new Dictionary<Vector3, Tile>();
 
     [SerializeField] private TextAsset[] gridBlueprint;
+    
+    public GameObject content;
 
     public void GenerateGrid()
     {
@@ -71,10 +73,14 @@ public class Grid : MonoBehaviour
 
     private void GenerateTile(string tileType, Vector3 identifier)
     {
-        Tile tile = new Tile(identifier.ToString());
-        GameObject tileObject = Instantiate(new GameObject(), transform);
+        GameObject tileObject = new GameObject();
+        tileObject.transform.parent = transform;
         tileObject.transform.position += identifier;
+        Tile tile = tileObject.AddComponent<Tile>();
         Tiles.Add(identifier, tile);
+        tile.content = content;
+        tile.tileType = Int32.Parse(tileType);
+        tile.SetUpTile();
     }
 
     private void AssertNeighbours()

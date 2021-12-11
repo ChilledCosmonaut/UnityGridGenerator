@@ -3,17 +3,21 @@ using UnityEngine;
 
 namespace TilePathfinding
 {
-    public class Tile
+    public class Tile : MonoBehaviour
     {
         public Tile[] Neighbours { get; set; }
 
-        public List<Tile> Path = new List<Tile>();
+        public List<Tile> path = new List<Tile>();
 
-        public string Identifier;
+        public string identifier;
 
-        public Tile(string identifier)
+        public int tileType;
+
+        public GameObject content;
+
+        public void SetUpTile()
         {
-            this.Identifier = identifier;
+            if(tileType != 0) Instantiate(content, transform);
         }
     }
 }

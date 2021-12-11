@@ -9,7 +9,7 @@ namespace TilePathfinding
         public static void FindPossiblePaths(Grid grid, Vector3 start, int maxPathLength)
         {
             Tile startTile = grid.Tiles[start];
-            startTile.Path.Add(startTile);
+            startTile.path.Add(startTile);
             var visited = new Dictionary<Tile, int> {{startTile, 0}};
 
             ExploreGrid(visited, startTile, 1, maxPathLength);
@@ -22,9 +22,9 @@ namespace TilePathfinding
                 if (visited.ContainsKey(neighbour) && currentPathLength < visited[neighbour])
                 {
                     visited[neighbour] = currentPathLength;
-                    neighbour.Path = new List<Tile>();
-                    neighbour.Path.AddRange(prevTile.Path);
-                    neighbour.Path.Add(neighbour);
+                    neighbour.path = new List<Tile>();
+                    neighbour.path.AddRange(prevTile.path);
+                    neighbour.path.Add(neighbour);
                     
                     if (maxPathLength > currentPathLength)
                     {
@@ -34,8 +34,8 @@ namespace TilePathfinding
                 }else if(!visited.ContainsKey(neighbour))
                 {
                     visited.Add(neighbour, currentPathLength);
-                    neighbour.Path.AddRange(prevTile.Path);
-                    neighbour.Path.Add(neighbour);
+                    neighbour.path.AddRange(prevTile.path);
+                    neighbour.path.Add(neighbour);
                     
                     if (maxPathLength > currentPathLength)
                     {
