@@ -29,12 +29,12 @@ public class Grid : MonoBehaviour
 
     private String[][] ConvertFloorFile(TextAsset floorString)
     {
-        String[] floorRows = floorString.text.Split(new[] {"\n"}, StringSplitOptions.None);
-        String[][] floorDescription = new string[floorRows.Length][];
+        String[] floorColumns = floorString.text.Split(new[] {"\n"}, StringSplitOptions.None);
+        String[][] floorDescription = new string[floorColumns.Length][];
 
-        for (int i = 0; i < floorRows.Length; i++)
+        for (int i = 0; i < floorColumns.Length; i++)
         {
-            floorDescription[i] = floorRows[i].Split(';');
+            floorDescription[i] = floorColumns[i].Split(';');
         }
 
         return floorDescription;
