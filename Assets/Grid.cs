@@ -40,32 +40,32 @@ public class Grid : MonoBehaviour
         return floorDescription;
     }
 
-    private void GenerateHeight(String[][][] cache, Vector3 dimensions)
+    private void GenerateHeight(String[][][] cache, Vector3 identifier)
     {
         for (int indexLength = 0; indexLength < cache.Length; indexLength++)
         {
-            dimensions.z = indexLength;
-            GenerateWidth(cache[indexLength], dimensions);
+            identifier.y = indexLength;
+            GenerateWidth(cache[indexLength], identifier);
         }
 
         AssertNeighbours();
     }
 
-    private void GenerateWidth(String[][] cache, Vector3 dimensions)
+    private void GenerateWidth(String[][] cache, Vector3 identifier)
     {
         for (int indexHeight = 0; indexHeight < cache.Length; indexHeight++)
         {
-            dimensions.y = indexHeight;
-            GenerateLength(cache[indexHeight], dimensions);
+            identifier.z = indexHeight;
+            GenerateLength(cache[indexHeight], identifier);
         }
     }
 
-    private void GenerateLength(String[] cache, Vector3 dimensions)
+    private void GenerateLength(String[] cache, Vector3 identifier)
     {
         for (int indexWidth = 0; indexWidth < cache.Length; indexWidth++)
         {
-            dimensions.x = indexWidth;
-            GenerateTile(cache[indexWidth], dimensions);
+            identifier.x = indexWidth;
+            GenerateTile(cache[indexWidth], identifier);
         }
     }
 
