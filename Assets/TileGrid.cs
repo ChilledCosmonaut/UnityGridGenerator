@@ -5,7 +5,7 @@ using TilePathfinding;
 using UnityEngine;
 
 [Serializable]
-public class Grid : MonoBehaviour
+public class TileGrid : MonoBehaviour
 {
     public TileMap tiles = new();
 
