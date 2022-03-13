@@ -84,10 +84,15 @@ public class Grid : MonoBehaviour
 
     private void GenerateTile(string tileType, Vector3 identifier)
     {
-        GameObject tileObject = new GameObject();
-        tileObject.transform.parent = transform;
+        var tileObject = new GameObject
+        {
+            transform =
+            {
+                parent = transform
+            }
+        };
         tileObject.transform.position += identifier;
-        Tile tile = tileObject.AddComponent<Tile>();
+        var tile = tileObject.AddComponent<Tile>();
         tiles.Add(identifier, tile);
         tile.content = content;
         tile.tileType = Int32.Parse(tileType);
