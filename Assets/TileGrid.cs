@@ -64,37 +64,45 @@ public sealed class TileGrid : MonoBehaviour
         for (int indexLength = 0; indexLength < cache.Length; indexLength++)
         {
             identifier.y = indexLength;
-            GenerateWidth(cache[indexLength], identifier);
+            var currentLayer = new GameObject{
+                transform =
+                {
+                    parent = transform
+                },
+                name = $"Layer {indexLength + 1}"
+            };
+            currentLayer.transform.position += identifier.y * Vector3.up;
+            GenerateWidth(cache[indexLength], identifier, currentLayer);
         }
 
         AssertNeighbours();
     }
 
-    private void GenerateWidth(String[][] cache, Vector3 identifier)
+    private void GenerateWidth(String[][] cache, Vector3 identifier, GameObject layerParent)
     {
         for (int indexHeight = 0; indexHeight < cache.Length; indexHeight++)
         {
             identifier.z = indexHeight;
-            GenerateLength(cache[indexHeight], identifier);
+            GenerateLength(cache[indexHeight], identifier, layerParent);
         }
     }
 
-    private void GenerateLength(String[] cache, Vector3 identifier)
+    private void GenerateLength(String[] cache, Vector3 identifier, GameObject layerParent)
     {
         for (int indexWidth = 0; indexWidth < cache.Length; indexWidth++)
         {
             identifier.x = indexWidth;
-            GenerateTile(cache[indexWidth], identifier);
+            GenerateTile(cache[indexWidth], identifier, layerParent);
         }
     }
 
-    private void GenerateTile(string tileType, Vector3 identifier)
+    private void GenerateTile(string tileType, Vector3 identifier, GameObject layerParent)
     {
         var tileObject = new GameObject
         {
             transform =
             {
-                parent = transform
+                parent = layerParent.transform
             }
         };
         tileObject.transform.position += identifier;
