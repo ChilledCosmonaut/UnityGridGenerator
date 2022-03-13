@@ -3,16 +3,23 @@ using System.Collections.Generic;
 using TilePathfinding;
 using UnityEngine;
 
+[Serializable]
 public class Grid : MonoBehaviour
 {
-    public readonly Dictionary<Vector3, Tile> Tiles = new Dictionary<Vector3, Tile>();
+    public TileMap tiles = new();
 
     [SerializeField] private TextAsset[] gridBlueprint;
 
     public void GenerateGrid()
     {
+        DeleteGrid();
         String[][][] cache = ConvertGridDescriptionToArray();
         GenerateHeight(cache, Vector3.zero);
+    }
+
+    public void DeleteGrid()
+    {
+        tiles.Clear();
     }
 
     private String[][][] ConvertGridDescriptionToArray()
@@ -72,28 +79,28 @@ public class Grid : MonoBehaviour
     private void GenerateTile(string tileType, Vector3 identifier)
     {
         Tile tile = new Tile(identifier.ToString());
-        Tiles.Add(identifier, tile);
+        tiles.Add(identifier, tile);
     }
 
     private void AssertNeighbours()
     {
-        foreach (var tile in Tiles)
+        foreach (var tile in tiles)
         {
-            var neighbours = new List<Tile>();
+            var neighbours = new List<Vector3>();
 
             Vector3 upperPossibleTiles = tile.Key + Vector3.up;
-            if (Tiles.ContainsKey(upperPossibleTiles))
+            if (tiles.ContainsKey(upperPossibleTiles))
             {
-                neighbours.Add(Tiles[upperPossibleTiles]);
+                neighbours.Add(upperPossibleTiles);
                 neighbours.AddRange(ScanTileSurroundings(upperPossibleTiles));
             }
 
             neighbours.AddRange(ScanTileSurroundings(tile.Key));
 
             Vector3 lowerPossibleTiles = tile.Key + Vector3.down;
-            if (Tiles.ContainsKey(lowerPossibleTiles))
+            if (tiles.ContainsKey(lowerPossibleTiles))
             {
-                neighbours.Add(Tiles[lowerPossibleTiles]);
+                neighbours.Add(lowerPossibleTiles);
                 neighbours.AddRange(ScanTileSurroundings(lowerPossibleTiles));
             }
 
@@ -101,9 +108,9 @@ public class Grid : MonoBehaviour
         }
     }
 
-    private List<Tile> ScanTileSurroundings(Vector3 tilePosition)
+    private List<Vector3> ScanTileSurroundings(Vector3 tilePosition)
     {
-        List<Tile> list = new List<Tile>();
+        List<Vector3> list = new List<Vector3>();
         AddTileToList(list, tilePosition + Vector3.forward);
         AddTileToList(list, tilePosition + Vector3.back);
         AddTileToList(list, tilePosition + Vector3.left);
@@ -111,11 +118,11 @@ public class Grid : MonoBehaviour
         return list;
     }
 
-    private void AddTileToList(List<Tile> list, Vector3 tilePosition)
+    private void AddTileToList(List<Vector3> list, Vector3 tilePosition)
     {
-        if (Tiles.ContainsKey(tilePosition))
+        if (tiles.ContainsKey(tilePosition))
         {
-            list.Add(Tiles[tilePosition]);
+            list.Add(tilePosition);
         }
     }
 }
