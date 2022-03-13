@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TilePathfinding;
 using UnityEngine;
 
@@ -21,6 +22,9 @@ public class Grid : MonoBehaviour
 
     public void DeleteGrid()
     {
+        foreach (var tilePair in tiles.Where(tilePair => tilePair.Value != null)) 
+            DestroyImmediate(tilePair.Value.gameObject);
+        
         tiles.Clear();
     }
 
