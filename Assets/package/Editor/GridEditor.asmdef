@@ -1,0 +1,16 @@
+{
+    "name": "GridEditor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:ca2d0a74345057e4eaef6ece45d695c9"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

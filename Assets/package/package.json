@@ -1,0 +1,21 @@
+{
+  "name": "com.chilldecosmonaut.gridgenerator",
+  "version": "1.0.0",
+  "displayName": "GridGenerator",
+  "description": "This package provides an grid generator for creating levels and a pathfinder utilizing the build grid",
+  "unity": "2021.2",
+  "unityRelease": "2f1",
+  "hideInEditor": false,
+  "documentationUrl": "https://github.com/ChilledCosmonaut/UnityGridGenerator/wiki",
+  "licensesUrl": "https://github.com/ChilledCosmonaut/UnityGridGenerator/blob/develop/LICENSE.md",
+  "dependencies": {
+  },
+  "keywords": [
+    "grid",
+    "pathfinding"
+  ],
+  "author": {
+    "name": "Jonas Schindler",
+    "email": "gopjo@outlook.de"
+  }
+}
