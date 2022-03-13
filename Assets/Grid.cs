@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class Grid : MonoBehaviour
 {
-    public readonly TileMap tiles = new();
+    public TileMap tiles = new();
 
     [SerializeField] private TextAsset[] gridBlueprint;
 
@@ -15,8 +15,6 @@ public class Grid : MonoBehaviour
         DeleteGrid();
         String[][][] cache = ConvertGridDescriptionToArray();
         GenerateHeight(cache, Vector3.zero);
-        
-        Debug.Log(JsonUtility.ToJson(tiles));
     }
 
     public void DeleteGrid()
