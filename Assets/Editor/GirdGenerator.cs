@@ -22,7 +22,13 @@ namespace TilePathfinding
             if (GUILayout.Button("Create Grid"))
             {
                 grid.GenerateGrid();
-                Debug.Log(grid.tiles.Count);
+                Debug.Log($"Created {grid.tiles.Count} Objects....");
+            }
+            
+            if (GUILayout.Button("Delete Grid"))
+            {
+                Debug.Log($"Deleting {grid.tiles.Count} Objects....");
+                grid.DeleteGrid();
             }
         }
     }
