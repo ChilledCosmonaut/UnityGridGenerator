@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using TilePathfinding;
 using UnityEngine;
 
+[Serializable]
 public class Grid : MonoBehaviour
 {
-    public readonly Dictionary<Vector3, Tile> Tiles = new Dictionary<Vector3, Tile>();
+    public readonly TileMap tiles = new();
 
     [SerializeField] private TextAsset[] gridBlueprint;
 
