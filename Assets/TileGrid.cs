@@ -13,11 +13,15 @@ public sealed class TileGrid : MonoBehaviour
     [SerializeField] 
     private TextAsset[] gridBlueprint;
     
-    public GameObject content;
+    [SerializeField]
+    private GridPreset content;
+
+    public Dictionary<int, TilePreset> mappedGridPreset;
 
     public void GenerateGrid()
     {
         DeleteGrid();
+        mappedGridPreset = MapGridPreset();
         String[][][] cache = ConvertGridDescriptionToArray();
         GenerateHeight(cache, Vector3.zero);
     }
@@ -96,8 +100,8 @@ public sealed class TileGrid : MonoBehaviour
         tileObject.transform.position += identifier;
         var tile = tileObject.AddComponent<Tile>();
         tiles.Add(identifier, tile);
-        tile.content = content;
         tile.tileType = Int32.Parse(tileType);
+        tile.content = mappedGridPreset[tile.tileType];
         tile.SetUpTile();
     }
 
@@ -144,4 +148,7 @@ public sealed class TileGrid : MonoBehaviour
             list.Add(tilePosition);
         }
     }
+
+    private Dictionary<int, TilePreset> MapGridPreset() =>
+        content.tileSets.ToDictionary(preset => preset.identifier);
 }

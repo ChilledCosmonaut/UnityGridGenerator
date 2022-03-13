@@ -350,4 +350,4 @@ MonoBehaviour:
     values: []
   gridBlueprint:
   - {fileID: 4900000, guid: 4d75e69c07b63204ead84729041080fe, type: 3}
-  content: {fileID: 7573463608836439524, guid: ce95228654b25df469151e6fe95066a1, type: 3}
+  content: {fileID: 11400000, guid: b583ebe295beed2498835157028b4fbf, type: 2}
