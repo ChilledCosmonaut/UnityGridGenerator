@@ -1,13 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace TilePathfinding
 {
+    [Serializable]
     public class Tile : MonoBehaviour
     {
-        public Tile[] Neighbours { get; set; }
+        public Vector3[] Neighbours { get; set; }
 
-        public List<Tile> path = new List<Tile>();
+        public List<Vector3> path = new ();
 
         public string identifier;
 
