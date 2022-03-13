@@ -1,6 +1,6 @@
 {
   "name": "com.chilldecosmonaut.gridgenerator",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "displayName": "GridGenerator",
   "description": "This package provides an grid generator for creating levels and a pathfinder utilizing the build grid",
   "unity": "2021.2",
