@@ -12,8 +12,16 @@ public class Grid : MonoBehaviour
 
     public void GenerateGrid()
     {
+        DeleteGrid();
         String[][][] cache = ConvertGridDescriptionToArray();
         GenerateHeight(cache, Vector3.zero);
+        
+        Debug.Log(JsonUtility.ToJson(tiles));
+    }
+
+    public void DeleteGrid()
+    {
+        tiles.Clear();
     }
 
     private String[][][] ConvertGridDescriptionToArray()
