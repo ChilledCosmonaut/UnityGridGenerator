@@ -1,19 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace TilePathfinding
 {
+    [Serializable]
     public class Tile
     {
-        public Tile[] Neighbours { get; set; }
+        public Vector3[] Neighbours { get; set; }
 
-        public List<Tile> Path = new List<Tile>();
+        public List<Vector3> path = new();
 
-        public string Identifier;
+        public string identifier;
 
         public Tile(string identifier)
         {
-            this.Identifier = identifier;
+            this.identifier = identifier;
         }
     }
 }
