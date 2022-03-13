@@ -11,8 +11,6 @@ namespace TilePathfinding
 
         public List<Vector3> path = new ();
 
-        public string identifier;
-
         public int tileType;
 
         public GameObject content;
