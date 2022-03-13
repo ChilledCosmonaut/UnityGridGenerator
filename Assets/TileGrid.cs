@@ -1,24 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TilePathfinding;
 using UnityEngine;
 
 [Serializable]
-public class Grid : MonoBehaviour
+public sealed class TileGrid : MonoBehaviour
 {
+    [HideInInspector] 
     public TileMap tiles = new();
 
-    [SerializeField] private TextAsset[] gridBlueprint;
+    [HideInInspector]
+    public List<GameObject> layers = new ();
+
+    [SerializeField] 
+    private TextAsset[] gridBlueprint;
+    
+    [SerializeField]
+    private GridPreset content;
+
+    public Dictionary<int, TilePreset> mappedGridPreset;
 
     public void GenerateGrid()
     {
         DeleteGrid();
+        mappedGridPreset = MapGridPreset();
         String[][][] cache = ConvertGridDescriptionToArray();
         GenerateHeight(cache, Vector3.zero);
     }
 
     public void DeleteGrid()
     {
+        foreach(var layer in layers)
+            DestroyImmediate(layer);
+        
+        layers.Clear();
+        
+        foreach (var tilePair in tiles.Where(tilePair => tilePair.Value != null)) 
+            DestroyImmediate(tilePair.Value.gameObject);
+        
         tiles.Clear();
     }
 
@@ -36,50 +56,71 @@ public class Grid : MonoBehaviour
 
     private String[][] ConvertFloorFile(TextAsset floorString)
     {
-        String[] floorRows = floorString.text.Split(new[] {"\n"}, StringSplitOptions.None);
-        String[][] floorDescription = new string[floorRows.Length][];
+        String[] floorColumns = floorString.text.Split(new[] {"\n"}, StringSplitOptions.None);
+        String[][] floorDescription = new string[floorColumns.Length][];
 
-        for (int i = 0; i < floorRows.Length; i++)
+        for (int i = 0; i < floorColumns.Length; i++)
         {
-            floorDescription[i] = floorRows[i].Split(';');
+            floorDescription[i] = floorColumns[i].Split(';');
         }
 
         return floorDescription;
     }
 
-    private void GenerateHeight(String[][][] cache, Vector3 dimensions)
+    private void GenerateHeight(String[][][] cache, Vector3 identifier)
     {
         for (int indexLength = 0; indexLength < cache.Length; indexLength++)
         {
-            dimensions.z = indexLength;
-            GenerateWidth(cache[indexLength], dimensions);
+            identifier.y = indexLength;
+            var currentLayer = new GameObject{
+                transform =
+                {
+                    parent = transform
+                },
+                name = $"Layer {indexLength + 1}"
+            };
+            currentLayer.transform.position += identifier.y * Vector3.up;
+            layers.Add(currentLayer);
+            GenerateWidth(cache[indexLength], identifier, currentLayer);
         }
 
         AssertNeighbours();
     }
 
-    private void GenerateWidth(String[][] cache, Vector3 dimensions)
+    private void GenerateWidth(String[][] cache, Vector3 identifier, GameObject layerParent)
     {
         for (int indexHeight = 0; indexHeight < cache.Length; indexHeight++)
         {
-            dimensions.y = indexHeight;
-            GenerateLength(cache[indexHeight], dimensions);
+            identifier.z = indexHeight;
+            GenerateLength(cache[indexHeight], identifier, layerParent);
         }
     }
 
-    private void GenerateLength(String[] cache, Vector3 dimensions)
+    private void GenerateLength(String[] cache, Vector3 identifier, GameObject layerParent)
     {
         for (int indexWidth = 0; indexWidth < cache.Length; indexWidth++)
         {
-            dimensions.x = indexWidth;
-            GenerateTile(cache[indexWidth], dimensions);
+            identifier.x = indexWidth;
+            GenerateTile(cache[indexWidth], identifier, layerParent);
         }
     }
 
-    private void GenerateTile(string tileType, Vector3 identifier)
+    private void GenerateTile(string tileType, Vector3 identifier, GameObject layerParent)
     {
-        Tile tile = new Tile(identifier.ToString());
+        var tileObject = new GameObject
+        {
+            transform =
+            {
+                parent = layerParent.transform
+            },
+            name = $"Tile{(int)identifier.x}{(int)identifier.y}{(int)identifier.z}"
+        };
+        tileObject.transform.position += identifier;
+        var tile = tileObject.AddComponent<Tile>();
         tiles.Add(identifier, tile);
+        tile.tileType = Int32.Parse(tileType);
+        tile.content = mappedGridPreset[tile.tileType];
+        tile.SetUpTile();
     }
 
     private void AssertNeighbours()
@@ -125,4 +166,7 @@ public class Grid : MonoBehaviour
             list.Add(tilePosition);
         }
     }
+
+    private Dictionary<int, TilePreset> MapGridPreset() =>
+        content.tileSets.ToDictionary(preset => preset.identifier);
 }

@@ -3,15 +3,15 @@ using UnityEngine;
 
 namespace TilePathfinding
 {
-    [CustomEditor(typeof(Grid))]
+    [CustomEditor(typeof(TileGrid))]
     public class GirdGenerator : Editor
     {
-        private Grid grid;
+        private TileGrid tileGrid;
 
         private void OnEnable()
         {
             // Method 1
-            grid = (Grid) target;
+            tileGrid = (TileGrid) target;
         }
 
         public override void OnInspectorGUI()
@@ -21,14 +21,14 @@ namespace TilePathfinding
             
             if (GUILayout.Button("Create Grid"))
             {
-                grid.GenerateGrid();
-                Debug.Log($"Created {grid.tiles.Count} Objects....");
+                tileGrid.GenerateGrid();
+                Debug.Log($"Created {tileGrid.tiles.Count} Objects....");
             }
             
             if (GUILayout.Button("Delete Grid"))
             {
-                Debug.Log($"Deleting {grid.tiles.Count} Objects....");
-                grid.DeleteGrid();
+                Debug.Log($"Deleting {tileGrid.tiles.Count} Objects....");
+                tileGrid.DeleteGrid();
             }
         }
     }

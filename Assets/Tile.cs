@@ -5,17 +5,26 @@ using UnityEngine;
 namespace TilePathfinding
 {
     [Serializable]
-    public class Tile
+    public class Tile : MonoBehaviour
     {
         public Vector3[] Neighbours { get; set; }
 
-        public List<Vector3> path = new();
+        public List<Vector3> path = new ();
 
-        public string identifier;
+        public int tileType;
 
-        public Tile(string identifier)
+        public TilePreset content;
+
+        private GameObject instantiatedContent;
+
+        public void SetUpTile()
         {
-            this.identifier = identifier;
+            if (tileType == 0) return;
+            instantiatedContent = Instantiate(content.presetObject, transform);
+            instantiatedContent.transform.localPosition = content.presetPosition;
+            instantiatedContent.transform.Rotate(content.presetRotation);
+            instantiatedContent.transform.localScale = content.presetScale;
+            instantiatedContent.name = content.name;
         }
     }
 }

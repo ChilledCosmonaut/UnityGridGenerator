@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fe4330745b44bc40a143f4a4ee97d5d, type: 3}
+  m_Name: TestPreset
+  m_EditorClassIdentifier: 
+  tileSets:
+  - name: Test
+    identifier: 0
+    presetObject: {fileID: 7573463608836439524, guid: ce95228654b25df469151e6fe95066a1, type: 3}
+    presetPosition: {x: 0, y: 0, z: 0}
+    presetRotation: {x: 0, y: 0, z: 0}
+    presetScale: {x: 1, y: 1, z: 1}
+  - name: Test1
+    identifier: 1
+    presetObject: {fileID: 7573463608836439524, guid: ce95228654b25df469151e6fe95066a1, type: 3}
+    presetPosition: {x: 0, y: 0, z: 0}
+    presetRotation: {x: 0, y: 0, z: 0}
+    presetScale: {x: 1, y: 1, z: 1}
+  - name: Test2
+    identifier: 2
+    presetObject: {fileID: 7573463608836439524, guid: f25d4e6b9a4afaa4d96f9cb26bbe1c5e, type: 3}
+    presetPosition: {x: 0, y: 0, z: 0}
+    presetRotation: {x: 0, y: 0, z: 0}
+    presetScale: {x: 1, y: 1, z: 1}
+  - name: Test3
+    identifier: 3
+    presetObject: {fileID: 7573463608836439524, guid: df63230991969ae49bf6810613517098, type: 3}
+    presetPosition: {x: 0, y: 0, z: 0}
+    presetRotation: {x: 0, y: 0, z: 0}
+    presetScale: {x: 1, y: 1, z: 1}
+  - name: Test4
+    identifier: 4
+    presetObject: {fileID: 7573463608836439524, guid: 905bfbc7a1998814284aab86c78f36f5, type: 3}
+    presetPosition: {x: 0, y: 0, z: 0}
+    presetRotation: {x: 0, y: 0, z: 0}
+    presetScale: {x: 1, y: 1, z: 1}
