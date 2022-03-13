@@ -5,11 +5,13 @@ using TilePathfinding;
 using UnityEngine;
 
 [Serializable]
-public class TileGrid : MonoBehaviour
+public sealed class TileGrid : MonoBehaviour
 {
+    [HideInInspector] 
     public TileMap tiles = new();
 
-    [SerializeField] private TextAsset[] gridBlueprint;
+    [SerializeField] 
+    private TextAsset[] gridBlueprint;
     
     public GameObject content;
 
