@@ -10,6 +10,9 @@ public sealed class TileGrid : MonoBehaviour
     [HideInInspector] 
     public TileMap tiles = new();
 
+    [HideInInspector]
+    public List<GameObject> layers = new ();
+
     [SerializeField] 
     private TextAsset[] gridBlueprint;
     
@@ -28,6 +31,11 @@ public sealed class TileGrid : MonoBehaviour
 
     public void DeleteGrid()
     {
+        foreach(var layer in layers)
+            DestroyImmediate(layer);
+        
+        layers.Clear();
+        
         foreach (var tilePair in tiles.Where(tilePair => tilePair.Value != null)) 
             DestroyImmediate(tilePair.Value.gameObject);
         
@@ -72,6 +80,7 @@ public sealed class TileGrid : MonoBehaviour
                 name = $"Layer {indexLength + 1}"
             };
             currentLayer.transform.position += identifier.y * Vector3.up;
+            layers.Add(currentLayer);
             GenerateWidth(cache[indexLength], identifier, currentLayer);
         }
 
@@ -103,7 +112,8 @@ public sealed class TileGrid : MonoBehaviour
             transform =
             {
                 parent = layerParent.transform
-            }
+            },
+            name = $"Tile{(int)identifier.x}{(int)identifier.y}{(int)identifier.z}"
         };
         tileObject.transform.position += identifier;
         var tile = tileObject.AddComponent<Tile>();
