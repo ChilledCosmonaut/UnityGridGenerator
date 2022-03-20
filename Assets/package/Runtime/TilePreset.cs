@@ -12,5 +12,6 @@ namespace TilePathfinding
         public Vector3 presetPosition;
         public Vector3 presetRotation;
         public Vector3 presetScale = Vector3.one;
+        public InstantiationBehaviour instantiationBehaviour;
     }
 }

@@ -20,11 +20,7 @@ namespace TilePathfinding
         public void SetUpTile()
         {
             if (tileType == 0) return;
-            instantiatedContent = Instantiate(content.presetObject, transform);
-            instantiatedContent.transform.localPosition = content.presetPosition;
-            instantiatedContent.transform.Rotate(content.presetRotation);
-            instantiatedContent.transform.localScale = content.presetScale;
-            instantiatedContent.name = content.name;
+            content.instantiationBehaviour.Instantiate(this, content);
         }
     }
 }
