@@ -12,7 +12,7 @@ public class StandardInstantiateBehaviour : InstantiationBehaviour
         instantiatedContent.transform.localPosition = content.presetPosition;
         instantiatedContent.transform.Rotate(content.presetRotation);
         instantiatedContent.transform.localScale = content.presetScale;
-        instantiatedContent.name = content.name;
+        instantiatedContent.name = ((Object)this).name;
         return instantiatedContent;
     }
 }

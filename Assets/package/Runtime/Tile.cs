@@ -15,12 +15,14 @@ namespace TilePathfinding
 
         public TilePreset content;
 
+        public InstantiationBehaviour instantiationBehaviour;
+
         private GameObject instantiatedContent;
 
         public void SetUpTile()
         {
             if (tileType == 0) return;
-            content.instantiationBehaviour.Instantiate(this, content);
+            instantiationBehaviour.Instantiate(this, content);
         }
     }
 }

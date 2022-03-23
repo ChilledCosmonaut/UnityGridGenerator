@@ -3,15 +3,14 @@ using UnityEngine;
 
 namespace TilePathfinding
 {
-    [Serializable]
-    public class TilePreset
+    [CreateAssetMenu(fileName = "GridPreset", menuName = "Grid Preset")]
+    public class TilePreset : ScriptableObject
     {
-        public string name;
+        public new string name;
         public int identifier;
         public GameObject presetObject;
         public Vector3 presetPosition;
         public Vector3 presetRotation;
         public Vector3 presetScale = Vector3.one;
-        public InstantiationBehaviour instantiationBehaviour;
     }
 }

@@ -6,4 +6,6 @@ using UnityEngine;
 public class GridPreset : ScriptableObject
 {
     public List<TilePreset> tileSets;
+    [HideInInspector]
+    public InstantiationBehaviour instantiationBehaviour;
 }
