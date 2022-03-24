@@ -56,10 +56,11 @@ namespace TilePathfinding
             if (tilePreset.presetObject.Count <= 1)
             {
                 customInstantiationBehaviour = EditorGUILayout.Toggle("Custom Instantiation", customInstantiationBehaviour);
+                
                 if (customInstantiationBehaviour)
-                {
-                    tilePreset.instantiationBehaviour = (InstantiationBehaviour) EditorGUILayout.ObjectField("Behaviour", tilePreset.instantiationBehaviour, typeof(InstantiationBehaviour), false);
-                }
+                    tilePreset.instantiationBehaviour = (InstantiationBehaviour)EditorGUILayout.ObjectField("Behaviour", tilePreset.instantiationBehaviour, typeof(InstantiationBehaviour), false);
+                else
+                    tilePreset.instantiationBehaviour = CreateInstance<StandardInstantiateBehaviour>();
             }
             else
             {
