@@ -19,7 +19,7 @@ namespace TilePathfinding
 
         public void SetUpTile()
         {
-            if (tileType == 0) return;
+            if (tileType == int.MaxValue) return;
             currentGameObject = content.instantiationBehaviour.Instantiate(this, content);
         }
     }

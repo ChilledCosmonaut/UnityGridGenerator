@@ -24,8 +24,18 @@ public sealed class TileGrid : MonoBehaviour
     public void GenerateGrid()
     {
         DeleteGrid();
-        mappedGridPreset = MapGridPreset();
-        String[][][] cache = ConvertGridDescriptionToArray();
+        
+        try
+        {
+            mappedGridPreset = MapGridPreset();
+        }
+        catch (Exception)
+        {
+            Debug.LogError("No fitting Tile Set asserted");
+            return;
+        }
+        
+        string[][][] cache = ConvertGridDescriptionToArray();
         GenerateHeight(cache, Vector3.zero);
     }
 
@@ -115,11 +125,21 @@ public sealed class TileGrid : MonoBehaviour
             },
             name = $"Tile{(int)identifier.x}{(int)identifier.y}{(int)identifier.z}"
         };
+        
         tileObject.transform.position += identifier;
         var tile = tileObject.AddComponent<Tile>();
         tiles.Add(identifier, tile);
-        tile.tileType = Int32.Parse(tileType);
-        tile.content = mappedGridPreset[tile.tileType];;
+        
+        if (tileType.Equals(""))
+        {
+            tile.tileType = int.MaxValue;
+        }
+        else
+        {
+            tile.tileType = int.Parse(tileType);
+            tile.content = mappedGridPreset[tile.tileType];
+        }
+
         tile.SetUpTile();
     }
 
