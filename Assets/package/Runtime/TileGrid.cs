@@ -119,8 +119,7 @@ public sealed class TileGrid : MonoBehaviour
         var tile = tileObject.AddComponent<Tile>();
         tiles.Add(identifier, tile);
         tile.tileType = Int32.Parse(tileType);
-        tile.content = mappedGridPreset[tile.tileType];
-        tile.instantiationBehaviour = content.instantiationBehaviour;
+        tile.content = mappedGridPreset[tile.tileType];;
         tile.SetUpTile();
     }
 

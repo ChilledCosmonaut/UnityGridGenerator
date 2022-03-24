@@ -1,16 +1,32 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace TilePathfinding
 {
-    [CreateAssetMenu(fileName = "GridPreset", menuName = "Grid Preset")]
+    [CreateAssetMenu(fileName = "TilePreset", menuName = "Tile Preset")]
     public class TilePreset : ScriptableObject
     {
-        public new string name;
         public int identifier;
-        public GameObject presetObject;
-        public Vector3 presetPosition;
-        public Vector3 presetRotation;
-        public Vector3 presetScale = Vector3.one;
+        public List<GameObject> presetObject = new ();
+        public List<Vector3> presetPosition = new ();
+        public List<Vector3> presetRotation = new ();
+        public List<Vector3> presetScale = new ();
+        public InstantiationBehaviour instantiationBehaviour;
+
+        public void CreateNewObject()
+        {
+            presetObject.Add(null);
+            presetPosition.Add(Vector3.zero);
+            presetRotation.Add(Vector3.zero);
+            presetScale.Add(Vector3.one);
+        }
+        
+        public void RemoveObjectAt(int index)
+        {
+            presetObject.RemoveAt(index);
+            presetPosition.RemoveAt(index);
+            presetRotation.RemoveAt(index);
+            presetScale.RemoveAt(index);
+        }
     }
 }
