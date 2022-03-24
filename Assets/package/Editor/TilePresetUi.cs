@@ -35,7 +35,7 @@ namespace TilePathfinding
 
                         IfEmptyInitialize();
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         // ignored
                     }
@@ -48,7 +48,6 @@ namespace TilePathfinding
             
             if (GUILayout.Button("Add Preset"))
             {
-                var newPreset = CreateInstance<TilePreset>();
                 tilePreset.CreateNewObject();
             }
             EditorGUILayout.Space();
