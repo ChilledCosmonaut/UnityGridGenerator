@@ -19,22 +19,9 @@ public sealed class TileGrid : MonoBehaviour
     [SerializeField]
     private GridPreset content;
 
-    public Dictionary<int, TilePreset> mappedGridPreset;
-
     public void GenerateGrid()
     {
         DeleteGrid();
-        
-        try
-        {
-            mappedGridPreset = MapGridPreset();
-        }
-        catch (Exception)
-        {
-            Debug.LogError("No fitting Tile Set asserted");
-            return;
-        }
-        
         string[][][] cache = ConvertGridDescriptionToArray();
         GenerateHeight(cache, Vector3.zero);
     }
@@ -137,7 +124,16 @@ public sealed class TileGrid : MonoBehaviour
         else
         {
             tile.tileType = int.Parse(tileType);
-            tile.content = mappedGridPreset[tile.tileType];
+
+            try
+            {
+                tile.content = content.tileSets[tile.tileType];
+            }
+            catch (Exception)
+            {
+                Debug.LogError("Grid preset does not have enough tile presets");
+                return;
+            }
         }
 
         tile.SetUpTile();
@@ -186,7 +182,4 @@ public sealed class TileGrid : MonoBehaviour
             list.Add(tilePosition);
         }
     }
-
-    private Dictionary<int, TilePreset> MapGridPreset() =>
-        content.tileSets.ToDictionary(preset => preset.identifier);
 }

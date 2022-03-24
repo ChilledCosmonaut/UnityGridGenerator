@@ -19,7 +19,6 @@ namespace TilePathfinding
 
         public override void OnInspectorGUI()
         {
-            tilePreset.identifier = EditorGUILayout.IntField("Identifier", tilePreset.identifier);
             for (int index = 0; index < tilePreset.presetObject.Count; index++)
             {
                 tilePreset.presetObject[index] = (GameObject)EditorGUILayout.ObjectField("PresetObject", tilePreset.presetObject[index], typeof(GameObject), false);
