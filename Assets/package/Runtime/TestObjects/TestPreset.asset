@@ -13,38 +13,8 @@ MonoBehaviour:
   m_Name: TestPreset
   m_EditorClassIdentifier: 
   tileSets:
-  - name: Test
-    identifier: 0
-    presetObject: {fileID: 7573463608836439524, guid: ce95228654b25df469151e6fe95066a1, type: 3}
-    presetPosition: {x: 0, y: 0, z: 0}
-    presetRotation: {x: 0, y: 0, z: 0}
-    presetScale: {x: 1, y: 1, z: 1}
-    instantiationBehaviour: {fileID: 11400000, guid: 5114c2acd49740b4796a59835fc6e3d0, type: 2}
-  - name: Test1
-    identifier: 1
-    presetObject: {fileID: 7573463608836439524, guid: ce95228654b25df469151e6fe95066a1, type: 3}
-    presetPosition: {x: 0, y: 0, z: 0}
-    presetRotation: {x: 0, y: 0, z: 0}
-    presetScale: {x: 1, y: 1, z: 1}
-    instantiationBehaviour: {fileID: 11400000, guid: 5114c2acd49740b4796a59835fc6e3d0, type: 2}
-  - name: Test2
-    identifier: 2
-    presetObject: {fileID: 7573463608836439524, guid: f25d4e6b9a4afaa4d96f9cb26bbe1c5e, type: 3}
-    presetPosition: {x: 0, y: 0, z: 0}
-    presetRotation: {x: 0, y: 0, z: 0}
-    presetScale: {x: 1, y: 1, z: 1}
-    instantiationBehaviour: {fileID: 11400000, guid: 5114c2acd49740b4796a59835fc6e3d0, type: 2}
-  - name: Test3
-    identifier: 3
-    presetObject: {fileID: 7573463608836439524, guid: df63230991969ae49bf6810613517098, type: 3}
-    presetPosition: {x: 0, y: 0, z: 0}
-    presetRotation: {x: 0, y: 0, z: 0}
-    presetScale: {x: 1, y: 1, z: 1}
-    instantiationBehaviour: {fileID: 11400000, guid: 5114c2acd49740b4796a59835fc6e3d0, type: 2}
-  - name: Test4
-    identifier: 4
-    presetObject: {fileID: 7573463608836439524, guid: 905bfbc7a1998814284aab86c78f36f5, type: 3}
-    presetPosition: {x: 0, y: 0, z: 0}
-    presetRotation: {x: 0, y: 0, z: 0}
-    presetScale: {x: 1, y: 1, z: 1}
-    instantiationBehaviour: {fileID: 11400000, guid: 5114c2acd49740b4796a59835fc6e3d0, type: 2}
+  - {fileID: 11400000, guid: 3fe91ff4d6f58244f807caded8dec1a9, type: 2}
+  - {fileID: 11400000, guid: 2b3b5e2220cd7da4289c56ae944ab4e8, type: 2}
+  - {fileID: 11400000, guid: e85ce56c9ad04a24a9f536655725cff4, type: 2}
+  - {fileID: 11400000, guid: f307853bff10503428272536e328df89, type: 2}
+  - {fileID: 11400000, guid: 90d6c805b6a41d0469d89450c19533dd, type: 2}
